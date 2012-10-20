@@ -1,6 +1,6 @@
 package org.chandan.logmanager.activities;
 
-import org.chandan.android.logmanager.LOG_TO;
+import org.chandan.android.logmanager.DUMP_TO;
 import org.chandan.android.logmanager.LOG_TYPE;
 import org.chandan.android.logmanager.MyLogConfig;
 import org.chandan.android.logmanager.MyLogController;
@@ -10,8 +10,8 @@ import android.os.Bundle;
 
 
 /**
- * 
- * @author chandan
+ * Demo activity class for custom logging.
+ * chandan, Oct 20, 2012, 11:37:03 AM
  *
  */
 public class LogManagerActivity extends Activity {
@@ -22,15 +22,25 @@ public class LogManagerActivity extends Activity {
 	private static final String TAG=LogManagerActivity.class.getSimpleName();
 	
     /** Called when the activity is first created. */
-    @Override
+    @SuppressWarnings("null")
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        MyLogConfig.setApplicationTag(getResources().getString(R.string.app_name));
+        //[STANDARD_INTIALISATION_OF_LOG_CONFIG
+        MyLogConfig.initLogger(getApplicationContext(),
+        		true,getResources().getString(R.string.app_name));
+        //STANDARD_INTIALISATION_OF_LOG_CONFIG]
+        
+        
         
         MyLogController.processLog(
-        		LOG_TO.CONSOLE, LOG_TYPE.DEBUG,	TAG,"onCreate().");
+        		DUMP_TO.ALL, LOG_TYPE.DEBUG,	TAG,"onCreate()1.");
+        MyLogController.processLog(
+        		DUMP_TO.ALL, LOG_TYPE.DEBUG,	TAG,"onCreate()2.");
+        MyLogController.processLog(
+        		DUMP_TO.ALL, LOG_TYPE.DEBUG,	TAG,"onCreate()3.");
         
         String sampleExceptionString=null;
         try{
@@ -38,11 +48,11 @@ public class LogManagerActivity extends Activity {
         	sampleExceptionString.charAt(1);
         }catch (Exception exception) {
         	//Draw a line seperator..
-        	MyLogController.feedSeperationLine(LOG_TO.CONSOLE);
+        	MyLogController.feedSeperationLine(DUMP_TO.CONSOLE);
 			MyLogController.processException(
-					LOG_TO.CONSOLE, TAG, exception);
+					DUMP_TO.ALL, TAG, exception);
 			//Draw a line seperator..
-			MyLogController.feedSeperationLine(LOG_TO.CONSOLE);
+			MyLogController.feedSeperationLine(DUMP_TO.CONSOLE);
 		}
     }
     
