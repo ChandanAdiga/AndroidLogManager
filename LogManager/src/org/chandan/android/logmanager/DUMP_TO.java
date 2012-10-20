@@ -1,13 +1,12 @@
 package org.chandan.android.logmanager;
 
-
 /**
  * Defines how log should be processed.
  * 
- * @author chandan
+ * chandan, Oct 20, 2012, 11:35:22 AM
  *
  */
-public enum LOG_TO {
+public enum DUMP_TO {
 	/**
 	 * Logs will not be processed at all!
 	 */
@@ -21,37 +20,31 @@ public enum LOG_TO {
 	/**
 	 * Processes logs and writes to a file in application sync.
 	 */
-	@Deprecated
 	 FILE,
 	
 	/**
 	 * Process logs and writes to private log Data base.
 	 */
-	@Deprecated
-	 DB,
+	 //DB,
 	 
 	/**
 	 * Process logs and writes to console as well as to a  file.
 	 */
-	@Deprecated
 	CONSOLE_AND_FILE,
 	 
 	/**
 	 * Process logs and writes to console as well as to DB.
 	 */
-	@Deprecated
-	 CONSOLE_AND_DB,
+	 //CONSOLE_AND_DB,
 	 
 	/**
 	 * Process logs and writes to file as well as to DB.
 	 */
-	 @Deprecated
-	 FILE_AND_DB,
+	 //FILE_AND_DB,
 	 
 	/**
 	 * Process logs and writes to console, file as well as to DB.
 	 */
-	 @Deprecated
 	 ALL
 	
 }

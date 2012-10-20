@@ -2,7 +2,8 @@ package org.chandan.android.logmanager;
 
 /**
  * Defines all associated constants for processing logs.
- *
+ * <p>
+ * @author chandan, Oct 20, 2012, 12:57:08 PM
  */
 final class MyLogConstants {
 	
@@ -12,10 +13,12 @@ final class MyLogConstants {
 	protected static String SINGLE_TAB_OF_LINES="_____";
 	
 	/**
-	 * Tag name of the application.
+	 * As length() returns maximum integer value, we will put check near to
+	 * Integer's maximum value. If this check exceeds we will dump all string to
+	 * the file.
 	 */
-	protected static String APP_TAG;
-
+	protected static final int STRING_BUFER_MAXIMUM_CAPACITY=Integer.MAX_VALUE-100000;
+	
 	/**
 	 * Tag for line feed.
 	 */
@@ -29,44 +32,59 @@ final class MyLogConstants {
 	
 	
 	/**
-	 * Default way to process logs, i.e {@link LOG_TO#CONSOLE} 
+	 * Default way to process logs, i.e {@link DUMP_TO#CONSOLE} 
 	 */
-	protected static final LOG_TO DEFAULT_LOG_TO=LOG_TO.CONSOLE;
+	protected static final DUMP_TO DEFAULT_LOG_TO=DUMP_TO.CONSOLE;
 	
 	/**
 	 * Default category for log i.e {@link LOG_TYPE#DEBUG} 
 	 */
 	protected static final LOG_TYPE DEFAULT_LOG_TYP=LOG_TYPE.DEBUG;
 	
+	/**
+	 * 
+	 */
+	protected static final String TAG_LOG_CONFIG_ERROR="MyLogConfig";
 	
+	/**
+	 * Error message  for logging permission denial
+	 */
+	protected static final String MESSAGE_LOGGING_IS_NOT_PERMITTED_ERROR="Permission denied! To enable logging, kindly enable logging permission";
 	
 	/* ********************FILE STUFFS***********************/
 	
 	/**
+	 * Folder name to dump log files.
+	 */
+	protected static final String FOLDER_NAME_TO_DUMP_LOG_FILE="LOGS";
+	
+	/**
 	 * Text file extension.
 	 */
-	protected static final String FILE_EXTENSION_TEXT=".txt";
+	private static final String DEFAULT_DUMP_FILE_NAME="MyLog";
+	
+	/**
+	 * Text file extension.
+	 */
+	protected static final String TEXT_FILE_EXTENSION=".txt";
 	
 	/**
 	 * Log file extension.
 	 */
-	protected static final String FILE_EXTENSION_LOG=".log";
+	protected static final String LOG_FILE_EXTENSION=".log";
 	
 	/**
-	 * Default file name to which logs should be write to.
+	 * Default qualified file name to which logs should be write to.
 	 * <p>
-	 * @see LOG_TO#FILE
+	 * @see DUMP_TO#FILE
 	 */
-	@SuppressWarnings("javadoc")
-	protected static final String FILE_NAME_TO_SAVE_LOGS="MyLog"+FILE_EXTENSION_TEXT;
+	protected static final String DEFAULT_QUALIFIED_DUMP_FILE_NAME=DEFAULT_DUMP_FILE_NAME+TEXT_FILE_EXTENSION;
 	
 	/**
 	 * Default DB file name to which logs should be write to.
-	 * <p>
-	 * @see LOG_TO#DB
+	 * 
 	 */
-	@SuppressWarnings("javadoc")
-	protected static final String DB_NAME_TO_SAVE_LOGS="MyLog";
+	protected static final String DEFAULT_DB_NAME="MyLog";
 	
 	
 }

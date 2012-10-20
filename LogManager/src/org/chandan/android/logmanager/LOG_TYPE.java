@@ -2,7 +2,9 @@ package org.chandan.android.logmanager;
 
 /**
  * Available category of log messages.
- * @author chandan
+ * 
+ * chandan, Oct 20, 2012, 11:35:56 AM
+ *
  */
 public enum LOG_TYPE {
 	/**
