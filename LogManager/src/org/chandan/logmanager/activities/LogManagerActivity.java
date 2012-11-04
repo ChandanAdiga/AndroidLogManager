@@ -21,6 +21,11 @@ public class LogManagerActivity extends Activity {
 	 */
 	private static final String TAG=LogManagerActivity.class.getSimpleName();
 	
+	/**
+	 * Local flag to disable logs of this class.
+	 */
+	private static final boolean DEBUG=Boolean.TRUE;
+	
     /** Called when the activity is first created. */
     @SuppressWarnings("null")
 	@Override
@@ -34,25 +39,28 @@ public class LogManagerActivity extends Activity {
         //STANDARD_INTIALISATION_OF_LOG_CONFIG]
         
         
-        
-        MyLogController.processLog(
-        		DUMP_TO.ALL, LOG_TYPE.DEBUG,	TAG,"onCreate()1.");
-        MyLogController.processLog(
-        		DUMP_TO.ALL, LOG_TYPE.DEBUG,	TAG,"onCreate()2.");
-        MyLogController.processLog(
-        		DUMP_TO.ALL, LOG_TYPE.DEBUG,	TAG,"onCreate()3.");
+        if(DEBUG){
+        	MyLogController.processLog(
+            		DUMP_TO.ALL, LOG_TYPE.DEBUG,	TAG,"onCreate()1.");
+            MyLogController.processLog(
+            		DUMP_TO.ALL, LOG_TYPE.DEBUG,	TAG,"onCreate()2.");
+            MyLogController.processLog(
+            		DUMP_TO.ALL, LOG_TYPE.DEBUG,	TAG,"onCreate()3.");            
+        }
         
         String sampleExceptionString=null;
         try{
         	//As below string points to nothing, this will through the exception..
         	sampleExceptionString.charAt(1);
         }catch (Exception exception) {
-        	//Draw a line seperator..
-        	MyLogController.feedSeperationLine(DUMP_TO.CONSOLE);
-			MyLogController.processException(
-					DUMP_TO.ALL, TAG, exception);
-			//Draw a line seperator..
-			MyLogController.feedSeperationLine(DUMP_TO.CONSOLE);
+        	if(DEBUG){
+        		//Draw a line seperator..
+            	MyLogController.feedSeperationLine(DUMP_TO.CONSOLE);
+    			MyLogController.processException(
+    					DUMP_TO.ALL, TAG, exception);
+    			//Draw a line seperator..
+    			MyLogController.feedSeperationLine(DUMP_TO.CONSOLE);
+        	}        	
 		}
     }
     
